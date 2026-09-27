@@ -2,8 +2,6 @@
 # 🏥 EVE Healthcare — Diagnostic Booking Backend
 
 > **SDE Intern Hiring Assignment**
->
-> A production-minded REST API for diagnostic-centre discovery, test booking, simulated payments, and reliable payment-webhook processing.
 
 ---
 
@@ -70,39 +68,58 @@ The implementation intentionally stays compact while prioritizing clean API boun
               └──────────────────────────┘
 
 
-### 💳 Payment Flow
+
+**Note:** Yeh tumhare existing state flow ko hi clean format mein dikha raha hai.
+
+---
 
 
+# 💳 Payment Flow
+
+```text
 Create Booking
       │
       ▼
    PENDING
       │
       ▼
-POST /payments
+ POST /payments
       │
       ├───────────────┐
+      │               │
       ▼               ▼
-   SUCCESS           FAILED
+   SUCCESS          FAILED
       │               │
       ▼               ▼
  CONFIRMED          FAILED
-      │
-      ▼
+
+
+Webhook Flow
+
 POST /payments/webhook
-      │
-      ▼
-   eventId check
-      │
-   ┌──┴───────────────┐
-   │                  │
-Existing event      New event
-   │                  │
-   ▼                  ▼
-Duplicate         Process once
+          │
+          ▼
+     Check eventId
+          │
+     ┌────┴────┐
+     │         │
+     ▼         ▼
+   New       Existing
+   Event       Event
+     │         │
+     ▼         ▼
+  Process   Compare
+    Once      Data
+               │
+        ┌──────┴──────┐
+        ▼             ▼
+     Same Data    Conflicting Data
+        │             │
+        ▼             ▼
+    Duplicate       409 Error
+     Response
 
-
----
+```
 
 ## 🗃️ Database Design
 
@@ -122,14 +139,28 @@ The application uses PostgreSQL with a relational model designed around users, d
 ### Relationships
 
 
-users 1 ───────── N bookings N ───────── 1 centre_tests
-                                      /          \
-                                     /            \
-                                    ▼              ▼
-                         diagnostic_centres      tests
+```text
+users
+  │
+  │ 1 : N
+  ▼
+bookings
+  │
+  │ N : 1
+  ▼
+centre_tests
+  │
+  ├──────────────► diagnostic_centres
+  │
+  └──────────────► tests
 
-bookings 1 ───────── 1 payments
+bookings
+  │
+  │ 1 : 1
+  ▼
+payments
 
+```
 
 ### Booking States
 
@@ -411,10 +442,9 @@ npm test
 
 Integration tests run when TEST_DATABASE_URL is provided.
 
-### Windows PowerShell
+### Windows CMD
 
-
-$env:TEST_DATABASE_URL="postgresql://postgres:postgres@localhost:5432/eve_healthcare_test"
+set TEST_DATABASE_URL=postgresql://postgres:YOUR_PASSWORD@localhost:5432/eve_healthcare_test
 npm test
 
 
@@ -528,15 +558,22 @@ docker compose exec api node src/config/setupDb.js
 
 # 📁 Project Structure
 
-
+```text
 eve-healthcare-backend/
 │
 ├── src/
 │   ├── config/
+│   │   ├── db.js
+│   │   └── setupDb.js
+│   │
 │   ├── controllers/
+│   │
 │   ├── middleware/
+│   │
 │   ├── routes/
+│   │
 │   ├── services/
+│   │
 │   ├── app.js
 │   ├── server.js
 │   └── swagger.js
@@ -551,7 +588,6 @@ eve-healthcare-backend/
 │   ├── integration.test.js
 │   ├── payment.test.js
 │   ├── paymentService.test.js
-│   ├── setup.js
 │   └── validation.test.js
 │
 ├── API_EXAMPLES.md
@@ -563,8 +599,7 @@ eve-healthcare-backend/
 ├── .env.example
 └── .gitignore
 
-
----
+```
 
 # 📚 Documentation
 
