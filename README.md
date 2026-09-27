@@ -231,7 +231,9 @@ Instead, the client sends only the selected `centreTestId`:
 
 ```json
 {
-  "centreTestId": 1
+  "centreTestId": "<centre-test-id>",
+  "appointmentDate": "2026-10-02",
+  "appointmentTime": "10:30"
 }
 ```
 
@@ -613,7 +615,30 @@ eve-healthcare-backend/
 
 ---
 
+📌 Assumptions
+1. A booking has one payment record in this simulated assignment.
+2. Payment simulation uses deterministic SUCCESS and FAILED states.
+3. The authenticated user represents the patient associated with the booking.
+4. Centre-specific pricing is stored in centre_tests.
+5. Webhook events are uniquely identified using eventId.
+6. Real webhook signature verification is outside the assignment scope.
+7. Appointment-slot capacity rules are not defined by the assignment.
+🔮 Future Improvements
 
+With more development time, the following could be added:
+- Redis caching
+- Background job processing
+- Structured logging
+- Request IDs
+- Rate limiting
+- Retry/dead-letter handling for webhooks
+- Real payment-provider signature verification
+- Secret rotation
+- Appointment-slot capacity management
+- Availability locking
+- CI/CD pipeline for tests and Docker builds
+
+  
 # 🎯 Assignment Focus
 
 This project was developed as part of the **EVE Healthcare SDE Intern Hiring Assignment**.
