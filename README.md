@@ -68,9 +68,6 @@ The implementation intentionally stays compact while prioritizing clean API boun
               └──────────────────────────┘
 
 
-
-**Note:** Yeh tumhare existing state flow ko hi clean format mein dikha raha hai.
-
 ---
 
 
@@ -162,24 +159,28 @@ payments
 
 ```
 
+---
+
+
 ### Booking States
 
--
-             ┌───────────────┐
-             │    PENDING    │
-             └───────┬───────┘
-                     │
-            ┌────────┴────────┐
-            ▼                 ▼
-       CONFIRMED           FAILED
+```text
+                 ┌───────────┐
+                 │  PENDING  │
+                 └─────┬─────┘
+                       │
+             ┌─────────┴─────────┐
+             ▼                   ▼
+      ┌─────────────┐      ┌──────────┐
+      │  CONFIRMED  │      │  FAILED  │
+      └─────────────┘      └──────────┘
+             │
+             ▼
+      ┌─────────────┐
+      │  CANCELLED  │
+      └─────────────┘
 
-            PENDING
-                │
-                ▼
-           CANCELLED
-
-
----
+```
 
 ## 🔐 Authentication & Authorization
 
