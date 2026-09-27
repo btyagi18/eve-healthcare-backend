@@ -450,7 +450,7 @@ npm test
 
 
 The end-to-end lifecycle covers:
-
+```text
 Signup
    ↓
 Login
@@ -462,7 +462,7 @@ Payment
 Webhook
    ↓
 Booking Status Update
-
+```
 ---
 
 # 🚀 Getting Started
