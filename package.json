@@ -1,0 +1,26 @@
+{
+  "name": "eve-healthcare-backend",
+  "version": "1.0.0",
+  "description": "SDE Intern backend assignment for EVE Healthcare: diagnostic bookings and simulated payments.",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "node --watch src/server.js",
+    "start": "node src/server.js",
+    "db:setup": "node src/config/setupDb.js",
+    "test": "jest --runInBand --detectOpenHandles",
+    "test:coverage": "jest --runInBand --coverage"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.13.1",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0"
+  }
+}

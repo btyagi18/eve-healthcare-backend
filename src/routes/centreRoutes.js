@@ -1,0 +1,11 @@
+const router = require('express').Router();
+const auth = require('../middleware/auth');
+const { listCentres, getCentre, createCentre, updateCentre, listCentreTests, addCentreTest, updateCentreTest } = require('../controllers/centreController');
+router.get('/', listCentres);
+router.get('/:id/tests', listCentreTests);
+router.get('/:id', getCentre);
+router.post('/', auth, createCentre);
+router.patch('/:id', auth, updateCentre);
+router.post('/:id/tests', auth, addCentreTest);
+router.patch('/:id/tests/:centreTestId', auth, updateCentreTest);
+module.exports = router;
