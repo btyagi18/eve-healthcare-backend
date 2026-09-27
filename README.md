@@ -623,6 +623,9 @@ eve-healthcare-backend/
 5. Webhook events are uniquely identified using eventId.
 6. Real webhook signature verification is outside the assignment scope.
 7. Appointment-slot capacity rules are not defined by the assignment.
+
+---
+
 🔮 Future Improvements
 
 With more development time, the following could be added:
@@ -638,7 +641,8 @@ With more development time, the following could be added:
 - Availability locking
 - CI/CD pipeline for tests and Docker builds
 
-  
+---
+
 # 🎯 Assignment Focus
 
 This project was developed as part of the **EVE Healthcare SDE Intern Hiring Assignment**.
