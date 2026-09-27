@@ -564,7 +564,6 @@ eve-healthcare-backend/
 └── .gitignore
 
 
-
 ---
 
 # 📚 Documentation
@@ -578,35 +577,6 @@ eve-healthcare-backend/
 
 ---
 
-# 📌 Assumptions
-
-1. A booking has one payment record in this simulated assignment.
-2. Payment simulation uses deterministic `SUCCESS` and `FAILED` states.
-3. The authenticated user represents the patient associated with the booking.
-4. Centre-specific pricing is stored in `centre_tests`.
-5. Webhook events are uniquely identified using `eventId`.
-6. Real webhook signature verification is outside the assignment scope.
-7. Appointment-slot capacity rules are not defined by the assignment.
-
----
-
-# 🔮 Future Improvements
-
-With more development time, the following could be added:
-
-- Redis caching
-- Background job processing
-- Structured logging
-- Request IDs
-- Rate limiting
-- Retry/dead-letter handling for webhooks
-- Real payment-provider signature verification
-- Secret rotation
-- Appointment-slot capacity management
-- Availability locking
-- CI/CD pipeline for tests and Docker builds
-
----
 
 # 🎯 Assignment Focus
 
@@ -646,4 +616,4 @@ https://github.com/btyagi18/eve-healthcare-backend
 ---
 
 ### ⭐ Built with Node.js, Express.js & PostgreSQL
-```
+
